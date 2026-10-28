@@ -13,7 +13,7 @@ class Product{
     std::shared_ptr<ProductType> type_;
 
     public:
-    Product(int quant, double currPrice, std::shared_ptr<ProductType> type);
+    Product(int quant, double currPrice, const std::shared_ptr<ProductType>& type);
     int getWeight() const;
     double getTotalPrice() const;
     void changeQuantity(int newQuant);

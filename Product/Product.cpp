@@ -3,18 +3,17 @@
 #include<stdexcept>
 int Product::nextId_ = 1;
 
-Product::Product(int quant, double currPrice, std::shared_ptr<ProductType> type):id_(nextId_),quantity_(quant),currentPrice_(currPrice),type_(type){
-    nextId_ += 1;
+Product::Product(int quant, double currPrice, const std::shared_ptr<ProductType>& type):id_(nextId_),quantity_(quant),currentPrice_(currPrice),type_(type){
     if(!type){
         throw std::invalid_argument("This type doesn`t exist");
     }
     if(quant <= 0){
-        throw std::invalid_argument("Quantity must be positiv");
+        throw std::invalid_argument("Quantity must be positive");
     }
     if(currPrice <= 0.0){
         throw std::invalid_argument("Price must be positive");   
     }
-
+    nextId_ += 1;
 }
 
 int Product::getWeight() const{
@@ -22,7 +21,7 @@ int Product::getWeight() const{
 }
 
 double Product::getTotalPrice() const{
-    return (type_->getBasePrice())*quantity_;
+    return currentPrice_*quantity_;
 }
 
 void Product::changeQuantity(int newQuant){

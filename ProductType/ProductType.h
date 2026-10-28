@@ -14,6 +14,5 @@ class ProductType{
     public:
     ProductType(const std::string& ctg, int w, double p);
     static std::shared_ptr<ProductType> getType(const std::string& category);
-    int getBaseWeight() const;
-    double getBasePrice() const;
+    int getBaseWeight()const;
 };

@@ -23,10 +23,6 @@ std::shared_ptr<ProductType> ProductType::getType(const std::string& category){
     }
 }
 
-int ProductType::getBaseWeight() const{
+int ProductType::getBaseWeight()const{
     return baseWeight_;
-}
-
-double ProductType::getBasePrice() const{
-    return basePrice_;
 }
