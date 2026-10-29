@@ -5,7 +5,7 @@
 
 int Order::nextId_ = 1;
 
-Order::Order(const std::string& customer, const OrderStatus& status):id_(nextId_),customer_(customer),status_(status),totalPrice(0){
+Order::Order(const std::string& customer, const OrderStatus& status):id_(nextId_),customer_(customer),status_(status),totalDiscount_(0){
     nextId_ += 1;
 }
 
@@ -39,7 +39,7 @@ double Order::getTotalPrice() const{
     for(auto t : items_){
         total += t->getTotalPrice();
     }
-    return total;
+    return total - totalDiscount_;
 }
 
 void Order::setStatus(const OrderStatus& newStatus){
@@ -52,7 +52,7 @@ const std::vector<std::shared_ptr<Product>>& Order::getItems()const{
 
 void Order::applyDiscount(const std::shared_ptr<Discount>& discount){
     if(discount == nullptr){
-        throw std::invalid_argument("This discount doesn`t exits");
+        throw std::invalid_argument("This discount doesn`t exist");
     }
     discounts_.push_back(discount);
 }
@@ -62,4 +62,13 @@ void Order::setDelivery(const std::shared_ptr<Delivery>& newDelivery){
         throw std::invalid_argument("This delivery doesn`t exist");
     }
     delivery_ = newDelivery;
+}
+
+void Order::addDiscountAmount(double amount){
+    if(amount<0){
+        throw std::invalid_argument("Discount can`t be negative");
+    }
+    else{
+        totalDiscount_ += amount;
+    }
 }

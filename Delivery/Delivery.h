@@ -6,7 +6,7 @@ class Order;
 
 class Delivery{ 
     public:
-    virtual double getCost(Order&)const;
-    virtual std::string getEstimatedTime()const;
-    virtual bool isAvailable(Order&) const;
+    virtual double getCost(const Order&) const = 0;
+    virtual std::string getEstimatedTime() const = 0;
+    virtual bool isAvailable(const Order&) const = 0;
 };

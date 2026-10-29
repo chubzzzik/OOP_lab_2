@@ -4,5 +4,5 @@ class Order;
 
 class Discount {
     public:
-    virtual void apply(Order&);
+    virtual void apply(Order&) = 0;
 };

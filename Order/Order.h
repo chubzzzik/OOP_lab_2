@@ -17,7 +17,7 @@ class Order{
     OrderStatus status_;
     std::shared_ptr<Delivery> delivery_;
     std::vector<std::shared_ptr<Discount>> discounts_;
-    double totalPrice;
+    double totalDiscount_;
 
     public:
     Order(const std::string& customer, const OrderStatus& status);
@@ -29,6 +29,7 @@ class Order{
     const std::vector<std::shared_ptr<Product>>& getItems()const;
     void applyDiscount(const std::shared_ptr<Discount>& discount);
     void setDelivery(const std::shared_ptr<Delivery>& newDelivery);
+    void addDiscountAmount(double amount);
 };
 
 
