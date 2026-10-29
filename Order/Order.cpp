@@ -5,7 +5,7 @@
 
 int Order::nextId_ = 1;
 
-Order::Order(const std::string& customer, const OrderStatus& status):id_(nextId_),customer_(customer),status_(status),totalDiscount_(0){
+Order::Order(const std::string& customer, const OrderStatus& status):id_(nextId_),customer_(customer),status_(status),totalDiscount_(0),bonusBalance_(0){
     nextId_ += 1;
 }
 
@@ -70,5 +70,14 @@ void Order::addDiscountAmount(double amount){
     }
     else{
         totalDiscount_ += amount;
+    }
+}
+
+void Order::addBonusBalanceAmount(double amount){
+    if(amount < 0){
+        throw std::invalid_argument("Amount can`t be negative");
+    }
+    else{
+        bonusBalance_ += amount;
     }
 }
