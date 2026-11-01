@@ -1,21 +1,24 @@
 #pragma once
 
 #include"Order.h"
+#include"IObserver.h"
 
 #include<vector>
 #include<memory>
 #include<string>
 
-class OrderManager{
+class OrderManager:public IObserver{
     private:
     std::vector<std::unique_ptr<Order>> orders_;
     std::vector<std::string> customers_;
-    double turnover_;
-    int maxActiveOrders_;
+    double turnover_ = 0.0;
+    int maxActiveOrders_ = 5;
+    int activeOrders_ = 0;
 
     public:
-    std::unique_ptr<Order> createOrder(const std::string& customer, const std::vector<std::string>& items);
-    void updateStatus();
+    Order* createOrder(const std::string& customer, const std::string& region);
+    void updateStatus(int orderId, OrderStatus newStatus);
     double getTurnover() const;
-    int getCustomerCount() const;
+    size_t getCustomerCount() const;
+    void onOrderEvent(const OrderEvent& event) override;
 };

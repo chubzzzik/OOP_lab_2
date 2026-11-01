@@ -4,11 +4,12 @@
 #include"Delivery.h"
 #include"Product.h"
 #include"OrderStatus.h"
+#include"IObservable.h"
 
 #include<string>
 #include<vector>
 
-class Order{
+class Order:public IObservable{
     private:
     int id_;
     static int nextId_;
@@ -37,6 +38,9 @@ class Order{
     void setFreeDelivery();
     const std::string& getRegion() const;
     void setRegion(const std::string& newRegion);
+    int getId() const;
+    const std::string& getCustomer() const;
+    OrderStatus getStatus() const;
 };
 
 

@@ -1,4 +1,5 @@
 #include"Order.h"
+#include"OrderEvent.h"
 
 #include<algorithm>
 #include<stdexcept>
@@ -46,7 +47,12 @@ double Order::getTotalPrice() const{
 }
 
 void Order::setStatus(const OrderStatus& newStatus){
+    if(newStatus == status_){
+        return;
+    }
+    OrderEvent event (id_, status_, newStatus);
     status_ = newStatus;
+    this->notify(event);
 }
 
 const std::vector<std::shared_ptr<Product>>& Order::getItems()const{
@@ -95,4 +101,16 @@ const std::string& Order::getRegion() const{
 
 void Order::setRegion(const std::string& newRegion){
     region_ = newRegion;
+}
+
+int Order::getId() const{
+    return id_;
+}
+
+const std::string& Order::getCustomer() const{
+    return customer_;
+}
+
+OrderStatus Order::getStatus() const{
+    return status_;
 }
