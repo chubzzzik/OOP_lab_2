@@ -5,7 +5,7 @@
 
 int Order::nextId_ = 1;
 
-Order::Order(const std::string& customer, const OrderStatus& status):id_(nextId_),customer_(customer),status_(status),totalDiscount_(0),bonusBalance_(0){
+Order::Order(const std::string& customer, const OrderStatus& status, const std::string& reg):id_(nextId_),customer_(customer),status_(status),totalDiscount_(0),bonusBalance_(0),isDeliveryFree_(false),region_(reg){
     nextId_ += 1;
 }
 
@@ -38,6 +38,9 @@ double Order::getTotalPrice() const{
     double total = 0;
     for(auto t : items_){
         total += t->getTotalPrice();
+    }
+    if((delivery_ != nullptr) &&(isDeliveryFree_ == false)){
+        return total + (delivery_->getCost(*this)) - totalDiscount_;
     }
     return total - totalDiscount_;
 }
@@ -80,4 +83,16 @@ void Order::addBonusBalanceAmount(double amount){
     else{
         bonusBalance_ += amount;
     }
+}
+
+void Order::setFreeDelivery(){
+    isDeliveryFree_ = true;
+}
+
+const std::string& Order::getRegion() const{
+    return region_;
+}
+
+void Order::setRegion(const std::string& newRegion){
+    region_ = newRegion;
 }

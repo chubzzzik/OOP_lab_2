@@ -19,9 +19,11 @@ class Order{
     std::vector<std::shared_ptr<Discount>> discounts_;
     double totalDiscount_;
     double bonusBalance_;
+    bool isDeliveryFree_;
+    std::string region_;
 
     public:
-    Order(const std::string& customer, const OrderStatus& status);
+    Order(const std::string& customer, const OrderStatus& status, const std::string& reg);
     void addItem(const std::shared_ptr<Product>& item);
     void removeItem(const std::shared_ptr<Product>& item);
     int getTotalWeight() const;
@@ -32,6 +34,9 @@ class Order{
     void setDelivery(const std::shared_ptr<Delivery>& newDelivery);
     void addDiscountAmount(double amount);
     void addBonusBalanceAmount(double amount);
+    void setFreeDelivery();
+    const std::string& getRegion() const;
+    void setRegion(const std::string& newRegion);
 };
 
 

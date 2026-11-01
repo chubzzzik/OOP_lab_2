@@ -10,8 +10,8 @@ Product::Product(int quant, double currPrice, const std::shared_ptr<ProductType>
     if(quant <= 0){
         throw std::invalid_argument("Quantity must be positive");
     }
-    if(currPrice <= 0.0){
-        throw std::invalid_argument("Price must be positive");   
+    if(currPrice < 0.0){
+        throw std::invalid_argument("Price cant`t be negative");   
     }
     nextId_ += 1;
 }
@@ -25,8 +25,8 @@ double Product::getTotalPrice() const{
 }
 
 void Product::changeQuantity(int newQuant){
-    if(newQuant < 0){
-        throw std::invalid_argument("Quantity can`t be negative");
+    if(newQuant <= 0){
+        throw std::invalid_argument("Quantity must be positive");
     }
     else{
         quantity_ = newQuant;
