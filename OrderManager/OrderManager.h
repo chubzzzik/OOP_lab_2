@@ -21,4 +21,8 @@ class OrderManager:public IObserver{
     double getTurnover() const;
     size_t getCustomerCount() const;
     void onOrderEvent(const OrderEvent& event) override;
+
+    OrderManager() = default;
+    OrderManager(const OrderManager&) = delete;
+    OrderManager& operator=(const OrderManager&) = delete;
 };

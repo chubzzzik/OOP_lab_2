@@ -13,7 +13,7 @@ Order::Order(const std::string& customer, const OrderStatus& status, const std::
 
 void Order::addItem(const std::shared_ptr<Product>& item){
     if(item == nullptr){
-        throw std::invalid_argument("This item doesn`t exist");
+        throw std::invalid_argument("Order::addItem: item is null");
     }
     items_.push_back(item);
 }
@@ -21,7 +21,7 @@ void Order::addItem(const std::shared_ptr<Product>& item){
 void Order::removeItem(const std::shared_ptr<Product>& item){
     auto it = std::find(items_.begin(),items_.end(), item);
     if(it == items_.end()){
-        throw std::invalid_argument("Can`t find this item");
+        throw std::invalid_argument("Order::removeItem: item not found in order");
     }
     else{
         items_.erase(it);
@@ -62,7 +62,7 @@ const std::vector<std::shared_ptr<Product>>& Order::getItems()const{
 
 void Order::applyDiscount(const std::shared_ptr<Discount>& discount){
     if(discount == nullptr){
-        throw std::invalid_argument("This discount doesn`t exist");
+        throw std::invalid_argument("Order::applyDiscount: discount is null");
     }
     discount->apply(*this);
     discounts_.push_back(discount);
@@ -70,14 +70,14 @@ void Order::applyDiscount(const std::shared_ptr<Discount>& discount){
 
 void Order::setDelivery(const std::shared_ptr<Delivery>& newDelivery){
     if(newDelivery == nullptr){
-        throw std::invalid_argument("This delivery doesn`t exist");
+        throw std::invalid_argument("Order::setDelivery: delivery is null");
     }
     delivery_ = newDelivery;
 }
 
 void Order::addDiscountAmount(double amount){
     if(amount<0){
-        throw std::invalid_argument("Discount can`t be negative");
+        throw std::invalid_argument("Order::addDiscountAmount: amount is negative");
     }
     else{
         totalDiscount_ += amount;
@@ -86,7 +86,7 @@ void Order::addDiscountAmount(double amount){
 
 void Order::addBonusBalanceAmount(double amount){
     if(amount < 0){
-        throw std::invalid_argument("Amount can`t be negative");
+        throw std::invalid_argument("Order::addBonusBalanceAmount: amount is negative");
     }
     else{
         bonusBalance_ += amount;

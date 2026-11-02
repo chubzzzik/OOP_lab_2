@@ -6,10 +6,10 @@ std::unordered_map<std::string, std::shared_ptr<ProductType>> ProductType::pool_
 
 ProductType::ProductType(const std::string& ctg, int w, double p):category_(ctg),baseWeight_(w),basePrice_(p){
     if(w < 0){
-        throw std::invalid_argument("Weight cant`t be negative");
+        throw std::invalid_argument("ProductType: weight can't be negative");
     }
     if(p < 0.0){
-        throw std::invalid_argument("Price cant`t be negative");
+        throw std::invalid_argument("ProductType: price cant't be negative");
     }
 }
 

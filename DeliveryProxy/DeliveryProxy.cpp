@@ -46,6 +46,8 @@ bool DeliveryProxy::isAvailable(const Order& order) const{
         std::cout << "[DeliveryProxy] isAvailable: отказано - недоступный регион доставки" << "\n";
         return false;
     }
-    std::cout << "[DeliveryProxy] isAvailable: делегировано, доставка доступна" << "\n";
-    return realDelivery_->isAvailable(order);
+    bool result = realDelivery_->isAvailable(order);
+    std::cout << "[DeliveryProxy] isAvailable: делегировано, способ доставки подтвердил: "
+              << (result ? "доступна" : "недоступна") << "\n";
+    return result;
 }

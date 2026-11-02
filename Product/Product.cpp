@@ -5,13 +5,13 @@ int Product::nextId_ = 1;
 
 Product::Product(int quant, double currPrice, const std::shared_ptr<ProductType>& type):id_(nextId_),quantity_(quant),currentPrice_(currPrice),type_(type){
     if(!type){
-        throw std::invalid_argument("This type doesn`t exist");
+        throw std::invalid_argument("Product: type is null");
     }
     if(quant <= 0){
-        throw std::invalid_argument("Quantity must be positive");
+        throw std::invalid_argument("Product: quantity must be positive");
     }
     if(currPrice < 0.0){
-        throw std::invalid_argument("Price cant`t be negative");   
+        throw std::invalid_argument("Product: price can't be negative");   
     }
     nextId_ += 1;
 }
@@ -26,7 +26,7 @@ double Product::getTotalPrice() const{
 
 void Product::changeQuantity(int newQuant){
     if(newQuant <= 0){
-        throw std::invalid_argument("Quantity must be positive");
+        throw std::invalid_argument("Product::changeQuantity: quantity must be positive");
     }
     else{
         quantity_ = newQuant;

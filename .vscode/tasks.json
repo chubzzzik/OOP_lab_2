@@ -1,0 +1,58 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Сборка проекта (g++)",
+            "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "-I${workspaceFolder}/Discount",
+                "-I${workspaceFolder}/Discounts",
+                "-I${workspaceFolder}/Delivery",
+                "-I${workspaceFolder}/Deliveries",
+                "-I${workspaceFolder}/DeliveryProxy",
+                "-I${workspaceFolder}/IObserver",
+                "-I${workspaceFolder}/Order",
+                "-I${workspaceFolder}/OrderEvent",
+                "-I${workspaceFolder}/OrderManager",
+                "-I${workspaceFolder}/OrderStatus",
+                "-I${workspaceFolder}/Product",
+                "-I${workspaceFolder}/ProductType",
+                "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/Discounts/CashbackDiscount.cpp",
+                "${workspaceFolder}/Discounts/FreeDeliveryDiscount.cpp",
+                "${workspaceFolder}/Discounts/GiftDiscount.cpp",
+                "${workspaceFolder}/Discounts/PercentDiscount.cpp",
+                "${workspaceFolder}/Deliveries/CourierDelivery.cpp",
+                "${workspaceFolder}/Deliveries/PickupDelivery.cpp",
+                "${workspaceFolder}/Deliveries/PostDelivery.cpp",
+                "${workspaceFolder}/DeliveryProxy/DeliveryProxy.cpp",
+                "${workspaceFolder}/IObserver/IObservable.cpp",
+                "${workspaceFolder}/Order/Order.cpp",
+                "${workspaceFolder}/OrderEvent/OrderEvent.cpp",
+                "${workspaceFolder}/OrderManager/OrderManager.cpp",
+                "${workspaceFolder}/OrderStatus/OrderStatus.cpp",
+                "${workspaceFolder}/Product/Product.cpp",
+                "${workspaceFolder}/ProductType/ProductType.cpp",
+                "-o",
+                "${workspaceFolder}/order_manager.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Сборка всех .cpp проекта в order_manager.exe"
+        }
+    ]
+}

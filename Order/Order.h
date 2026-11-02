@@ -42,6 +42,11 @@ class Order:public IObservable{
     int getId() const;
     const std::string& getCustomer() const;
     OrderStatus getStatus() const;
+
+    Order(const Order&) = delete;
+    Order& operator=(const Order&) = delete;
+    Order(Order&&) = delete;
+    Order& operator=(Order&&) = delete;
 };
 
 

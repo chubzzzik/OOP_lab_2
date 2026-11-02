@@ -10,14 +10,14 @@
 #include<string>
 
 Order* OrderManager::createOrder(const std::string& customer, const std::string& region){
-    int order_counter = 0;
+    int orderCounter = 0;
     for(auto& t : orders_){
         if(t->getCustomer() == customer && (t->getStatus() != OrderStatus::Delivered && t->getStatus() != OrderStatus::Cancelled)){
-            order_counter++;
+            orderCounter++;
         }
 
     }
-    if(order_counter >= maxActiveOrders_){
+    if(orderCounter >= maxActiveOrders_){
         throw std::runtime_error("У этого клиента уже " + std::to_string(maxActiveOrders_) +  " активных заказов");
     }
     auto order = std::make_unique<Order>(customer, OrderStatus::Pending, region);
