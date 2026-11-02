@@ -8,6 +8,7 @@
 
 #include<string>
 #include<vector>
+#include<ostream>
 
 class Order:public IObservable{
     private:
@@ -44,5 +45,6 @@ class Order:public IObservable{
 };
 
 
-Order& operator+(Order&, const Discount&);
-Order& operator<<(Delivery&, Order&);
+Order& operator+(Order& order, const Discount& discount);
+Order& operator<<(Delivery& delivery, Order& order);
+std::ostream& operator<<(std::ostream& os, const Order& order);

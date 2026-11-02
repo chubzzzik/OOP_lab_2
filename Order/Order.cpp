@@ -3,6 +3,7 @@
 
 #include<algorithm>
 #include<stdexcept>
+#include<iostream>
 
 int Order::nextId_ = 1;
 
@@ -63,6 +64,7 @@ void Order::applyDiscount(const std::shared_ptr<Discount>& discount){
     if(discount == nullptr){
         throw std::invalid_argument("This discount doesn`t exist");
     }
+    discount->apply(*this);
     discounts_.push_back(discount);
 }
 
@@ -113,4 +115,21 @@ const std::string& Order::getCustomer() const{
 
 OrderStatus Order::getStatus() const{
     return status_;
+}
+
+Order& operator+(Order& order, const Discount& discount){
+    discount.apply(order);
+    return order;
+}
+
+Order& operator<<(Delivery& delivery, Order& order){
+    order.setDelivery(delivery.shared_from_this());
+    return order;
+}
+
+std::ostream& operator<<(std::ostream& os, const Order& order){
+    os << "Id: " << order.getId() << " клиент: " << order.getCustomer() << " статус: "
+    << statusToString(order.getStatus()) << " сумма: " << order.getTotalPrice() << " вес: "
+    << order.getTotalWeight() << " регион: " << order.getRegion() << "\n";
+    return os;
 }

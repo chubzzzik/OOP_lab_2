@@ -4,5 +4,5 @@
 
 class PercentDiscount:public Discount{
     public:
-    void apply(Order&) override;
+    void apply(Order&) const override;
 };
